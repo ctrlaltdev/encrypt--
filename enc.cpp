@@ -5,7 +5,7 @@
 #include <cryptopp/aes.h>
 #include <cryptopp/filters.h>
 
-int encrypt(std::string plaintext) {
+void encrypt(std::string plaintext) {
     //Key and IV setup
     //AES encryption uses a secret key of a variable length (128-bit, 196-bit or 256-   
     //bit). This key is secretly exchanged between two parties before communication   
@@ -33,11 +33,9 @@ int encrypt(std::string plaintext) {
     for( int i = 0; i < ciphertext.size(); i++ ) {
         std::cout << static_cast<CryptoPP::byte>(ciphertext[i]);
     }
-
-    return 0;
 }
 
-int decrypt(std::string ciphertext) {
+void decrypt(std::string ciphertext) {
     //Key and IV setup
     //AES encryption uses a secret key of a variable length (128-bit, 196-bit or 256-   
     //bit). This key is secretly exchanged between two parties before communication   
@@ -62,8 +60,6 @@ int decrypt(std::string ciphertext) {
     // Dump Decrypted Text
     //
     std::cout << decryptedtext;
-
-    return 0;
 }
 
 int main(int argc, char* argv[]) {
@@ -74,10 +70,10 @@ int main(int argc, char* argv[]) {
 
     if (action == "encrypt") {
       std::string plaintext = argv[2];
-      return encrypt(plaintext);
+      encrypt(plaintext);
     } else if (action == "decrypt") {
       std::string ciphertext = argv[2];
-      return decrypt(ciphertext);
+      decrypt(ciphertext);
     } else {
       std::cout << "Please use encrypt or decrypt" << std::endl;
       return 1;
